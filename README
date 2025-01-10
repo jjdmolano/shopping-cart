@@ -1,0 +1,4 @@
+Requirements to run the app:
+Node.js - Created using the latest LTS version (v22.13.0)
+
+Run npm install to install the dependencies for the tests
