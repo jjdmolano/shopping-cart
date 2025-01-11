@@ -7,7 +7,7 @@ let itemPrice = 0;
 let count = 0;
 
 export const pricingRules = [
-
+// Add a new pricing rule instance for every new promo
   new PricingRule("3 for 2 Deal", (items, total) => {
     filter = "ult_small";
     item = items.filter(item => item.code === filter);

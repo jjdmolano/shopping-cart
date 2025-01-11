@@ -21,10 +21,12 @@ export class ShoppingCart {
     if (item === null || typeof item !== "object") {
       return;
     }
+  
     this.items.push(item);
     this.total += item.price;
     this.promoCode = promoCode;
   }
+
   calculateTotal() {
     if (this.promoCode !== null) {
       this.total *= 1 - this.promoCode.percentage;

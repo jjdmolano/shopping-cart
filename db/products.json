@@ -1,4 +1,9 @@
 {
+  "item0": {
+    "code": "promo_item",
+    "name": "Promo code",
+    "price": 0
+  },
   "item1": {
     "code": "ult_small",
     "name": "Unlimited 1GB",
