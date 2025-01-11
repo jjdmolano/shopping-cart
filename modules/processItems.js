@@ -2,7 +2,7 @@ import { ShoppingCart } from "./classes.js";
 import { pricingRules } from "./pricingRules.js";
 import catalog from "../db/products.json" with { type: "json" };
 
-export function processItems(incomingData) {
+export const processItems = (incomingData) => {
   const cart = new ShoppingCart();
   const data = incomingData.data;
   cart.new(pricingRules);

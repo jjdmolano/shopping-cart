@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "A shopping cart app",
   "main": "app.js",
-  "type": "module",
   "scripts": {
     "test": "jest --coverage"
   },

@@ -1,4 +1,5 @@
 import { PricingRule, ShoppingCart } from '../modules/classes.js';
+import { pricingRules } from '../modules/pricingRules.js';
 
 describe('PricingRule', () => {
   test('should create an instance with default values', () => {
@@ -26,7 +27,7 @@ describe('ShoppingCart', () => {
     const cart = new ShoppingCart();
     expect(cart.items).toEqual([]);
     expect(cart.pricingRules).toEqual([]);
-    expect(cart.promoCode).toEqual({});
+    expect(cart.promoCodes).toEqual([]);
     expect(cart.total).toBe(0);
   });
 
@@ -37,11 +38,47 @@ describe('ShoppingCart', () => {
     expect(cart.items).toContain(item);
     expect(cart.total).toBe(100);
   });
+  
+  test('should apply 3 for 2 Deal correctly', () => {
+    const cart = new ShoppingCart();
+    cart.new(pricingRules);
+    const item = { code: "ult_small", price: 100 };
+    cart.add(item);
+    cart.add(item);
+    cart.add(item);
+    cart.calculateTotal();
+    expect(cart.total).toBe(200);
+  });
+
+  test('should apply Unlimited 5GB Bulk Discount correctly', () => {
+    const cart = new ShoppingCart();
+    cart.new(pricingRules);
+    const item = { code: "ult_large", price: 100 };
+    cart.add(item);
+    cart.add(item);
+    cart.add(item);
+    cart.add(item);
+    cart.calculateTotal();
+    expect(cart.total).toBe(159.6);
+  });
+
+  test('should apply Free 1GB Data Pack correctly', () => {
+    const cart = new ShoppingCart();
+    cart.new(pricingRules);
+    const item = { code: "ult_medium", price: 100 };
+    const freePack = {"code": "1gb", "name": "1GB Data-pack", "price": 0};
+    cart.add(item);
+    cart.add(item);
+    cart.calculateTotal();
+    const matchedPack = cart.items.find(object => object.code === freePack.code);
+    expect(cart.items).toContain(matchedPack);
+  });
 
   test('should apply promo code correctly', () => {
     const cart = new ShoppingCart();
+    cart.new(pricingRules);
     const item = { price: 100 };
-    const promoCode = { percentage: 0.1 };
+    const promoCode = "code1";
     cart.add(item, promoCode);
     cart.calculateTotal();
     expect(cart.total).toBe(90);

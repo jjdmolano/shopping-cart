@@ -1,10 +1,9 @@
 import { ShoppingCart } from "./classes.js";
 import { pricingRules } from "./pricingRules.js";
 import catalog from "../db/products.json" with { type: "json" };
-import promoCodes from "../db/promoCodes.json" with { type: "json" };
 
 const { item0, item1, item2, item3, item4, ...otherItems } = catalog;
-const { code1: promoCode, ...otherPromoCodes } = promoCodes;
+const promoCode = "code1";
 
 // Scenario 1
 const cart1 = new ShoppingCart();
