@@ -9,7 +9,7 @@ export class ShoppingCart {
   constructor() {
     this.items = [];
     this.pricingRules = [];
-    this.promoCode = {};
+    this.promoCodes = [];
     this.total = 0;
   }
 
@@ -24,16 +24,12 @@ export class ShoppingCart {
   
     this.items.push(item);
     this.total += item.price;
-    this.promoCode = promoCode;
+    this.promoCodes.push(promoCode);
   }
 
   calculateTotal() {
-    if (this.promoCode !== null) {
-      this.total *= 1 - this.promoCode.percentage;
-    }
-
     this.pricingRules.forEach(rule => {
-      const updatedCart = rule.condition(this.items, this.total);
+      const updatedCart = rule.condition(this.items, this.total, this.promoCodes);
       this.total = updatedCart.total;
       this.items = updatedCart.items;
     });

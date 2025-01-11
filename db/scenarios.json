@@ -1,26 +1,33 @@
 {
   "scenario1": {
-    "data": {
-      "items": [ "item1", "item1", "item1", "item3"],
-      "promoCode": null
-    }
+    "data": [
+      { "name": "item1", "promoCode": null },
+      { "name": "item1", "promoCode": null },
+      { "name": "item1", "promoCode": null },
+      { "name": "item3", "promoCode": null }
+    ]
   },
   "scenario2": {
-    "data": {
-      "items": [ "item1", "item1", "item3", "item3", "item3", "item3"],
-      "promoCode": null
-    }
+    "data": [
+      { "name": "item1", "promoCode": null },
+      { "name": "item1", "promoCode": null },
+      { "name": "item3", "promoCode": null },
+      { "name": "item3", "promoCode": null },
+      { "name": "item3", "promoCode": null },
+      { "name": "item3", "promoCode": null }
+    ]
   },
   "scenario3": {
-    "data": {
-      "items": [ "item1", "item2", "item2"],
-      "promoCode": null
-    }
+    "data": [
+      { "name": "item1", "promoCode": null },
+      { "name": "item2", "promoCode": null },
+      { "name": "item2", "promoCode": null }
+    ]
   },
   "scenario4": {
-    "data": {
-      "items": [ "item1", "item4"],
-      "promoCode": "code1"
-    }
+    "data": [
+      { "name": "item1", "promoCode": null },
+      { "name": "item4", "promoCode": "code1" }
+    ]
   }
 }

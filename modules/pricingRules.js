@@ -1,5 +1,6 @@
 import { PricingRule } from "./classes.js";
 import catalog from "../db/products.json" with { type: "json" };
+import promoCodesCatalog from "../db/promoCodes.json" with { type: "json" };
 
 let filter = "";
 let item = {};
@@ -7,8 +8,8 @@ let itemPrice = 0;
 let count = 0;
 
 export const pricingRules = [
-// Add a new pricing rule instance for every new promo
-  new PricingRule("3 for 2 Deal", (items, total) => {
+  // Add a new pricing rule instance for every new offer or promo code
+  new PricingRule("3 for 2 Deal", (items, total, promoCodes) => {
     filter = "ult_small";
     item = items.filter(item => item.code === filter);
     itemPrice = item.map(item => item.price);
@@ -20,7 +21,7 @@ export const pricingRules = [
     return { items, total };
   }),
 
-  new PricingRule("Unlimited 5GB Bulk Discount", (items, total) => {
+  new PricingRule("Unlimited 5GB Bulk Discount", (items, total, promoCodes) => {
     filter = "ult_large";
     item = items.filter(item => item.code === filter);
     itemPrice = item.map(item => item.price);
@@ -32,7 +33,7 @@ export const pricingRules = [
     return { items, total };
   }),
 
-  new PricingRule("Free 1GB Data Pack", (items, total) => {
+  new PricingRule("Free 1GB Data Pack", (items, total, promoCodes) => {
     filter = "ult_medium";
     item = items.filter(item => item.code === filter);
     count = item.length || 0;
@@ -41,6 +42,23 @@ export const pricingRules = [
     if (count > 0) {
       item.forEach(pack => items.push(freePack));
     }
+    return { items, total };
+  }),
+
+  new PricingRule("I<3AMAYSIM Promo Code", (items, total, promoCodes) => {
+    let percentage = 0;
+    filter = "code1";
+    const foundCode = promoCodes.filter(promoCode => promoCode === filter);
+    count = foundCode.length || 0;
+    if (count > 0) {
+      for (const key in promoCodesCatalog) {
+        if (filter === key) {
+          percentage = promoCodesCatalog[key].percentage;
+        }
+      }
+    }
+    const discount = total * percentage;
+    total -= discount;
     return { items, total };
   })
 
