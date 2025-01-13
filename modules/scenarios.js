@@ -3,7 +3,7 @@ import { pricingRules } from "./pricingRules.js";
 import catalog from "../db/products.json" with { type: "json" };
 
 const { item0, item1, item2, item3, item4, ...otherItems } = catalog;
-const promoCode = "code1";
+const promoCode = "I<3AMAYSIM";
 
 // Scenario 1
 const cart1 = new ShoppingCart();
