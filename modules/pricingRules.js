@@ -39,6 +39,7 @@ export const pricingRules = [
     count = item.length || 0;
     const freePack = structuredClone(catalog.item4);
     freePack.price = 0;
+    freePack.name = "1GB Data-pack (Free)";
     if (count > 0) {
       item.forEach(pack => items.push(freePack));
     }
