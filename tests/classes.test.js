@@ -78,7 +78,7 @@ describe('ShoppingCart', () => {
     const cart = new ShoppingCart();
     cart.new(pricingRules);
     const item = { price: 100 };
-    const promoCode = "code1";
+    const promoCode = "I<3AMAYSIM";
     cart.add(item, promoCode);
     cart.calculateTotal();
     expect(cart.total).toBe(90);

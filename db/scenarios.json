@@ -27,7 +27,7 @@
   "scenario4": {
     "data": [
       { "name": "item1", "promoCode": null },
-      { "name": "item4", "promoCode": "code1" }
+      { "name": "item4", "promoCode": "I<3AMAYSIM" }
     ]
   }
 }

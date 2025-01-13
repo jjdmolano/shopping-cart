@@ -47,12 +47,12 @@ export const pricingRules = [
 
   new PricingRule("I<3AMAYSIM Promo Code", (items, total, promoCodes) => {
     let percentage = 0;
-    filter = "code1";
+    filter = "I<3AMAYSIM";
     const foundCode = promoCodes.filter(promoCode => promoCode === filter);
     count = foundCode.length || 0;
     if (count > 0) {
       for (const key in promoCodesCatalog) {
-        if (filter === key) {
+        if (filter === promoCodesCatalog[key].name) {
           percentage = promoCodesCatalog[key].percentage;
         }
       }
